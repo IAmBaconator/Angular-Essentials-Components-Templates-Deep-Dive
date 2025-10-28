@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ButtonComponent } from '../../../shared/button/button.component';
 import { ControlComponent } from '../../../shared/control/control.component';
 import { FormsModule } from '@angular/forms';
@@ -11,11 +11,16 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './new-ticket.component.css'
 })
 export class NewTicketComponent {
+  @ViewChild('form') form?: ElementRef<HTMLFormElement>; //Decorator to pull from template form.
+
+
   onSubmit(title: string, ticketText: String) {
     // console.dir(titleElement); //https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement
     // const enteredTitle = titleElement.value;
     // console.log('ENTERED TITLE: ' + enteredTitle);
     console.log(title);
     console.log(ticketText);
+    
+    this.form?.nativeElement.reset();
   }
 }
