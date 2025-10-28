@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-server-status',
@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
   templateUrl: './server-status.component.html',
   styleUrl: './server-status.component.css'
 })
-export class ServerStatusComponent {
+export class ServerStatusComponent implements OnInit { // protect code by implementing intefaces to ensure propery spelling of lifestyle methods.
   currentStatus: 'online' | 'offline' | 'unknown' = 'offline';
 
   constructor() {} // should really only reserve the constructor() for initializing classes and other small things to keep it clean.
