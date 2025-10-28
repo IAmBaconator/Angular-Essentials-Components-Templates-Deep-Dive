@@ -10,7 +10,10 @@ import { Component } from '@angular/core';
 export class ServerStatusComponent {
   currentStatus: 'online' | 'offline' | 'unknown' = 'offline';
 
-  constructor() {
+  constructor() {} // should really only reserve the constructor() for initializing classes and other small things to keep it clean.
+  // Ref: Constructor Lifestyle https://angular.dev/guide/components/lifecycle
+
+  ngOnInit() {
     setInterval(() => {
       const rnd = Math.random(); // Will produce a value between 0 and 0.9999999999999
 
@@ -23,4 +26,5 @@ export class ServerStatusComponent {
       }
     }, 5000);
   }
+
 }
