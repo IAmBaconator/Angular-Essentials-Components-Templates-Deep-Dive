@@ -1,5 +1,5 @@
 import { ImplicitReceiver } from '@angular/compiler';
-import { AfterContentInit, Component, contentChild, ContentChild, ElementRef, inject, Input, ViewEncapsulation } from '@angular/core';
+import { AfterContentInit, afterNextRender, afterRender, Component, contentChild, ContentChild, ElementRef, inject, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-control',
@@ -22,8 +22,18 @@ export class ControlComponent implements AfterContentInit{
   //@ContentChild('input') private control?: ElementRef<HTMLInputElement | HTMLTextAreaElement>
   private control = contentChild<ElementRef<HTMLInputElement | HTMLTextAreaElement>>('input');
 
+  constructor() {
+    afterRender(() => {
+      console.log('afterRender'); // anytime a change on the page takes place.
+    });
+
+    afterNextRender(() => {
+      console.log('afterNextRender');// only after the page changes.
+    });
+  }
+
   ngAfterContentInit(): void {
-    console.log('AFTER CONTENT INIT')  ;
+    console.log('AFTER CONTENT INIT');
   }
 
   onClick() {
