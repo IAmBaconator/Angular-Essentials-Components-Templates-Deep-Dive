@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, viewChild, ViewChild, viewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, output, viewChild, ViewChild, viewChildren } from '@angular/core';
 import { ButtonComponent } from '../../../shared/button/button.component';
 import { ControlComponent } from '../../../shared/control/control.component';
 import { FormsModule } from '@angular/forms';
@@ -13,6 +13,8 @@ import { FormsModule } from '@angular/forms';
 export class NewTicketComponent implements OnInit, AfterViewInit{
   @ViewChild('form') form?: ElementRef<HTMLFormElement>; //Decorator to pull from template form.
   // private form = viewChild.required<ElementRef<HTMLFormElement>>('form'); //Available in A17.3, signal related feature that works like a decorator.
+  //@Output() add = new EventEmitter(<{title: string; text: string;}>); //Legacy approach.
+  add = output<{title: string; text: string;}>(); //Alternatvie more moder approach.
 
   ngOnInit(): void {
     console.log('ONINIT'); // Hook garenteed that the template has been initialized.
@@ -24,13 +26,14 @@ export class NewTicketComponent implements OnInit, AfterViewInit{
     console.log(this.form?.nativeElement);
   }
 
-  onSubmit(title: string, ticketText: String) {
+  onSubmit(title: string, ticketText: string) {
     // console.dir(titleElement); //https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement
     // const enteredTitle = titleElement.value;
     // console.log('ENTERED TITLE: ' + enteredTitle);
-    console.log(title);
-    console.log(ticketText);
-    
+    // console.log(title);
+    // console.log(ticketText);
+    this.add.emit({ title: title, text: ticketText });
+
     //this.form?.nativeElement.reset();
     this.form?.nativeElement.reset();
   }
