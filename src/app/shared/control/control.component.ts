@@ -1,4 +1,5 @@
-import { Component, contentChild, ContentChild, ElementRef, inject, Input, ViewEncapsulation } from '@angular/core';
+import { ImplicitReceiver } from '@angular/compiler';
+import { AfterContentInit, Component, contentChild, ContentChild, ElementRef, inject, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-control',
@@ -12,7 +13,7 @@ import { Component, contentChild, ContentChild, ElementRef, inject, Input, ViewE
     '(click)': 'onClick()' //recommended option for listening to component elements.
   }
 })
-export class ControlComponent {
+export class ControlComponent implements AfterContentInit{
   // @HostBinding('class') className = 'control'; //Alternative option instead of host: {class} above, but this is a legacy option.
   // @HostListener() //Alternative option instead of host: {'(click)'} above, but this is a legacy option.
 
@@ -20,6 +21,10 @@ export class ControlComponent {
   private el = inject(ElementRef);//Programmatic Access to code example.
   //@ContentChild('input') private control?: ElementRef<HTMLInputElement | HTMLTextAreaElement>
   private control = contentChild<ElementRef<HTMLInputElement | HTMLTextAreaElement>>('input');
+
+  ngAfterContentInit(): void {
+    console.log('AFTER CONTENT INIT')  ;
+  }
 
   onClick() {
     console.log('Clicked!');
