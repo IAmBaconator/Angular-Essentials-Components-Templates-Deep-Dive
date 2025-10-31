@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { Component, DestroyRef, effect, inject, OnInit, signal } from '@angular/core';
 
 @Component({
   selector: 'app-server-status',
@@ -8,11 +8,16 @@ import { Component, DestroyRef, inject, OnInit } from '@angular/core';
   styleUrl: './server-status.component.css'
 })
 export class ServerStatusComponent implements OnInit { // protect code by implementing intefaces to ensure propery spelling of lifestyle methods.
-  currentStatus: 'online' | 'offline' | 'unknown' = 'offline';
+  currentStatus = signal<'online' | 'offline' | 'unknown'>('offline');
  // private interval?: ReturnType<typeof setInterval>;
   private destroyRef = inject(DestroyRef);
 
-  constructor() {} // should really only reserve the constructor() for initializing classes and other small things to keep it clean.
+  constructor() {
+    effect(() => {
+      console.log(this.currentStatus());// Angular will now setup a subscription.
+    });
+    console.log('Initial status only: ' +this.currentStatus());// will only show this at the time the page loads. Angular will not setup a subscription here.
+  } // should really only reserve the constructor() for initializing classes and other small things to keep it clean.
   // Ref: Constructor Lifestyle https://angular.dev/guide/components/lifecycle
 
   ngOnInit() {
@@ -21,11 +26,11 @@ export class ServerStatusComponent implements OnInit { // protect code by implem
       const rnd = Math.random(); // Will produce a value between 0 and 0.9999999999999
 
       if (rnd > 0.5) {
-        this.currentStatus = 'online';
+        this.currentStatus.set('online');
       } else if (rnd > 0.9) {
-        this.currentStatus = 'offline';
+        this.currentStatus.set('offline');
       } else {
-        this.currentStatus = 'unknown';
+        this.currentStatus.set('unknown');
       }
     }, 5000);
 
