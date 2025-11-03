@@ -10,7 +10,7 @@ import { Ticket } from './ticket.model';
   styleUrl: './ticket.component.css'
 })
 export class TicketComponent {
-  data = input.required<Ticket>();
+  data = input.required<Ticket>(); // to values that can be used, alias & transform.
   close = output();
   detailsVisible = signal(false);
 
