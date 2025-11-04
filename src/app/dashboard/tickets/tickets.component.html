@@ -16,6 +16,7 @@
 
 <!-- Custom Two-Way Binding Messaround -->
 <div id="inputs">
+    <p>Custom Two-Way Binding Example</p>
     <p>
         <label>Width</label>
         <input type="number" step="1.0" [(ngModel)]="rectSize.width" />
@@ -25,4 +26,4 @@
         <input type="number" step="1.0" [(ngModel)]="rectSize.height" />
     </p>
 </div>
-<app-rect />
+<app-rect [(size)]="rectSize" />
