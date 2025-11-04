@@ -13,3 +13,16 @@
 <div id="new-ticket">
     <app-new-ticket (add)="onAdd($event)" />
 </div>
+
+<!-- Custom Two-Way Binding Messaround -->
+<div id="inputs">
+    <p>
+        <label>Width</label>
+        <input type="number" step="1.0" [(ngModel)]="rectSize.width" />
+    </p>
+    <p>
+        <label>Height</label>
+        <input type="number" step="1.0" [(ngModel)]="rectSize.height" />
+    </p>
+</div>
+<app-rect />
