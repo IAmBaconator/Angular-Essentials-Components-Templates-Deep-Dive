@@ -1,6 +1,9 @@
 <<<<<<< HEAD
 node_modules
 =======
+<<<<<<< HEAD
+node_modules
+=======
 node_modules/.package-lock.json
 node_modules/.bin/acorn
 node_modules/.bin/ansi-html
@@ -30002,4 +30005,5 @@ angular.json
 >>>>>>> 74c8318a7a7dece160ad0971c6b4b27f6618a2d2
 .angular/cache/18.2.21/cmp-deep-dive/.tsbuildinfo
 .angular/cache/18.2.21/cmp-deep-dive/.tsbuildinfo
+>>>>>>> b6e8dd7897ce2c04344f49399c9e3d2ae1942ea5
 .angular/cache/18.2.21/cmp-deep-dive/.tsbuildinfo
